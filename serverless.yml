@@ -7,7 +7,7 @@ plugins:
 
 provider:
   name: aws
-  runtime: nodejs18.x
+  runtime: nodejs20.x
   memory: 128
   region: us-east-1
   stage: ${opt:stage, 'dev'}
