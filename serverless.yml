@@ -1,0 +1,37 @@
+service: AWS-SLS-PROJECT-01
+frameworkVersion: "3"
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  memory: 128
+  region: us-east-1
+  stage: ${opt:stage, 'dev'}
+
+functions:
+  createUser:
+    handler: src/handlers/createUser.handler
+    timeout: 60
+    events:
+      - httpApi:
+          path: /users
+          method: POST
+  getAllUser:
+    handler: src/handlers/getAllUser.handler
+    timeout: 60
+    events:
+      - httpApi:
+          path: /users
+          method: GET
+  getUser:
+    handler: src/handlers/getUser.handler
+    timeout: 60
+    events:
+      - httpApi:
+          path: /users/{email}
+          method: GET
+  
